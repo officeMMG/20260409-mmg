@@ -36,15 +36,17 @@
     .section-title {
       font-size: clamp(1.6rem, 3vw, 2.2rem);
       font-weight: 700;
-      color: var(--primary);
+      color: #fff;
       text-align: center;
       margin-bottom: 12px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
     }
     .section-subtitle {
       text-align: center;
-      color: var(--text-mid);
+      color: rgba(255,255,255,0.88);
       margin-bottom: 56px;
       font-size: 0.95rem;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.5);
     }
     .section-title::after {
       content: '';
@@ -54,8 +56,8 @@
       background: var(--accent);
       margin: 12px auto 0;
     }
-    section { padding: 96px 0; background: rgba(255,255,255,0.3); }
-    section:nth-child(even) { background: rgba(220,242,255,0.3); }
+    section { padding: 96px 0; background: rgba(7,16,32,0.15); }
+    section:nth-child(even) { background: rgba(7,16,32,0.15); }
 
     /* ===== ヘッダー ===== */
     #site-header {
@@ -272,7 +274,7 @@
       content: '';
       width: 1px;
       height: 40px;
-      background: rgba(255,255,255,0.3);
+      background: rgba(7,16,32,0.15);
       animation: scrollLine 1.8s ease-in-out infinite;
     }
     @keyframes scrollLine {
@@ -333,7 +335,7 @@
     .company-table td { padding: 12px 0; color: var(--text-mid); }
 
     /* ===== 事業内容 ===== */
-    #business { background: rgba(220,242,255,0.3); }
+    #business { background: rgba(7,16,32,0.15); }
     .business-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -616,7 +618,7 @@
     .voice-role { font-size: 0.78rem; color: var(--text-mid); }
 
     /* ===== お問い合わせ ===== */
-    #contact { background: rgba(220,242,255,0.3); }
+    #contact { background: rgba(7,16,32,0.15); }
     .contact-info {
       max-width: 700px;
       margin: 0 auto 32px;
@@ -886,7 +888,7 @@
     }
     .persona-tag {
       background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.3);
+      border: 1px solid rgba(7,16,32,0.15);
       color: rgba(255,255,255,0.85);
       font-size: 0.78rem;
       font-weight: 600;
