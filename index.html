@@ -857,6 +857,66 @@
       gap: 5px;
     }
 
+    /* ===== ペルソナタグ（ヒーロー内） ===== */
+    .persona-tags {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .persona-tag {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 5px 16px;
+      border-radius: 20px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ===== こんな方へセクション ===== */
+    .persona-section {
+      background: var(--primary);
+      border-radius: 14px;
+      padding: 36px 40px;
+      margin-bottom: 48px;
+    }
+    .persona-section h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .persona-checks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .persona-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--white);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .persona-check::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    @media (max-width: 767px) {
+      .persona-section { padding: 28px 20px; }
+      .persona-checks { grid-template-columns: 1fr; }
+    }
+
     /* ===== 送信ボタン ローディング状態 ===== */
     .btn-submit:disabled {
       opacity: 0.7;
@@ -924,6 +984,12 @@
     <section id="hero">
       <div class="hero-content">
         <div class="hero-badge">RECRUIT 2026</div>
+        <div class="persona-tags">
+          <span class="persona-tag">20〜40代活躍中</span>
+          <span class="persona-tag">未経験・異業種OK</span>
+          <span class="persona-tag">高卒以上歓迎</span>
+          <span class="persona-tag">男女ともに活躍</span>
+        </div>
         <p class="hero-catch">地球を視て、測る仕事</p>
         <h1 class="hero-title">
           測量の技術で、<br><em>社会のインフラ</em>を守る。
@@ -1092,8 +1158,19 @@
       <div class="container">
         <h2 class="section-title">募集職種</h2>
         <p class="section-subtitle">未経験・異業種からの転職者も活躍中！基礎から丁寧に指導します</p>
+        <div class="persona-section">
+          <h3>こんな方、ぜひご応募ください</h3>
+          <div class="persona-checks">
+            <div class="persona-check">20〜40代で新しい仕事にチャレンジしたい</div>
+            <div class="persona-check">測量・土木の経験はないが興味がある</div>
+            <div class="persona-check">高卒以上で手に職をつけたい</div>
+            <div class="persona-check">異業種・他職種からの転職を考えている</div>
+            <div class="persona-check">資格を取りながら着実にキャリアを積みたい</div>
+            <div class="persona-check">安定した雇用・社会保険のある会社で働きたい</div>
+          </div>
+        </div>
         <div class="job-section-intro">
-          <p>測量及び調査業務として、未経験者・経験者いずれも募集しています。<br>現場での外業（計測・観測）と事務所での内業（データ整理・図面作成・成果品作成）の両方を担当していただきます。</p>
+          <p>20代から40代まで、さまざまな経歴を持つスタッフが活躍しています。<br>未経験・異業種からの転職者も多数。高卒以上の方であれば、<br>先輩スタッフがマンツーマンで基礎から指導しますのでご安心ください。</p>
         </div>
         <div class="jobs-two-grid">
 
@@ -1265,14 +1342,15 @@
           <div class="voice-card">
             <div class="voice-quote">"</div>
             <blockquote>
-              まったく別の業界から転職しましたが、先輩たちが丁寧に指導してくれて、
-              入社1年で測量士補の資格を取得できました。現場で地図に残る仕事ができることが誇りです。
+              飲食業から転職しました。最初は「自分にできるか」と不安でしたが、
+              先輩が現場でひとつひとつ教えてくれて、入社1年で測量士補の資格を取得。
+              地図に残る仕事ができることが、今は大きな誇りです。
             </blockquote>
             <div class="voice-person">
               <div class="voice-avatar">👨</div>
               <div>
-                <div class="voice-name">Kさん（30代）</div>
-                <div class="voice-role">測量士補 / 異業種から転職・入社3年目</div>
+                <div class="voice-name">Kさん（30代・高卒）</div>
+                <div class="voice-role">測量士補 / 飲食業から転職・入社3年目</div>
               </div>
             </div>
           </div>
@@ -1280,14 +1358,14 @@
           <div class="voice-card">
             <div class="voice-quote">"</div>
             <blockquote>
-              ドローン測量という最先端の技術に携われることが楽しいです。
-              会社が積極的に新しい機材や技術を取り入れてくれるので、
-              日々スキルが伸びていく実感があります。
+              高校卒業後、別の仕事をしていましたが20代のうちに手に職をつけたくて転職。
+              ドローン測量という最先端技術に携われるとは思っていなくて、毎日が新鮮です。
+              会社が資格取得費用を出してくれるのも助かっています。
             </blockquote>
             <div class="voice-person">
               <div class="voice-avatar">👨</div>
               <div>
-                <div class="voice-name">Tさん（20代）</div>
+                <div class="voice-name">Tさん（20代・高卒）</div>
                 <div class="voice-role">ドローンオペレーター / 入社2年目</div>
               </div>
             </div>
@@ -1296,15 +1374,15 @@
           <div class="voice-card">
             <div class="voice-quote">"</div>
             <blockquote>
-              内業スタッフとして図面整理やデータ入力を担当しています。
-              少人数のチームなので一人ひとりの仕事がダイレクトに成果につながり、
-              やりがいを感じながら働けています。
+              40代での転職は正直不安でしたが、年齢を理由に断られることもなく
+              温かく迎えてもらえました。週休2日でプライベートとの両立もでき、
+              腰を据えて長く働ける職場だと感じています。
             </blockquote>
             <div class="voice-person">
-              <div class="voice-avatar">👩</div>
+              <div class="voice-avatar">👨</div>
               <div>
-                <div class="voice-name">Mさん（30代）</div>
-                <div class="voice-role">測量補助スタッフ / 入社4年目</div>
+                <div class="voice-name">Nさん（40代）</div>
+                <div class="voice-role">測量スタッフ / 製造業から転職・入社1年目</div>
               </div>
             </div>
           </div>
