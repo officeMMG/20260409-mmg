@@ -1,25 +1,17 @@
-/* ===== 先輩の声 — data/voices.json から読み込み ===== */
-fetch('data/voices.json')
-  .then(r => r.json())
-  .then(voices => {
-    document.getElementById('voices-grid').innerHTML = voices.map(v => `
-      <div class="voice-card">
-        <div class="voice-quote">"</div>
-        <blockquote>${v.quote}</blockquote>
-        <div class="voice-person">
-          <div class="voice-avatar">${v.avatar}</div>
-          <div>
-            <div class="voice-name">${v.name}</div>
-            <div class="voice-role">${v.role}</div>
-          </div>
-        </div>
+/* ===== 先輩の声 — senpai_koe/voices.js の VOICES_DATA を使用 ===== */
+document.getElementById('voices-grid').innerHTML = VOICES_DATA.map(v => `
+  <div class="voice-card">
+    <div class="voice-quote">"</div>
+    <blockquote>${v.quote}</blockquote>
+    <div class="voice-person">
+      <div class="voice-avatar">${v.avatar}</div>
+      <div>
+        <div class="voice-name">${v.name}</div>
+        <div class="voice-role">${v.role}</div>
       </div>
-    `).join('');
-  })
-  .catch(() => {
-    document.getElementById('voices-grid').innerHTML =
-      '<p style="text-align:center;color:#999;">先輩の声を読み込めませんでした。</p>';
-  });
+    </div>
+  </div>
+`).join('');
 
 /* ===== 全ページ背景スライドショー ===== */
 (function () {
