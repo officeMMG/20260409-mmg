@@ -87,8 +87,9 @@ new IntersectionObserver(([entry]) => {
 /* ===== お問い合わせフォーム ===== */
 const form = document.getElementById('contact-form');
 const formSuccess = document.getElementById('form-success');
+const btnSubmit = document.getElementById('btn-submit');
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+let privacyAgreed = false;
 
 function setError(fieldId, errId, show) {
   document.getElementById(fieldId).classList.toggle('is-error', show);
@@ -102,7 +103,7 @@ function validate() {
   if (setError('email',   'err-email',   !emailRe.test(document.getElementById('email').value.trim()))) hasError = true;
   if (setError('job',     'err-job',     document.getElementById('job').value === '')) hasError = true;
   if (setError('message', 'err-message', document.getElementById('message').value.trim() === '')) hasError = true;
-  if (setError('agree',   'err-agree',   !document.getElementById('agree').checked)) hasError = true;
+  if (setError('agree',   'err-agree',   !privacyAgreed)) hasError = true;
   return !hasError;
 }
 
@@ -114,10 +115,9 @@ form.addEventListener('submit', async e => {
     return;
   }
 
-  const btn = form.querySelector('.btn-submit');
-  btn.textContent = '送信中';
-  btn.classList.add('loading');
-  btn.disabled = true;
+  btnSubmit.textContent = '送信中';
+  btnSubmit.classList.add('loading');
+  btnSubmit.disabled = true;
 
   try {
     const res = await fetch('/api/contact', {
@@ -139,22 +139,21 @@ form.addEventListener('submit', async e => {
       throw new Error('送信失敗');
     }
   } catch {
-    btn.textContent = '送信する';
-    btn.classList.remove('loading');
-    btn.disabled = false;
+    btnSubmit.textContent = '送信する';
+    btnSubmit.classList.remove('loading');
+    btnSubmit.disabled = false;
     alert('送信に失敗しました。お電話（0771-56-8323）またはお時間をおいて再度お試しください。');
   }
 });
 
 /* ===== プライバシーモーダル ===== */
 (function () {
-  const overlay     = document.getElementById('privacy-overlay');
-  const body        = document.getElementById('privacy-body');
-  const check       = document.getElementById('privacy-check');
-  const hint        = document.getElementById('privacy-hint');
-  const closeBtn    = document.getElementById('privacy-close');
-  const openLink    = document.getElementById('open-privacy');
-  const agreeMain   = document.getElementById('agree');
+  const overlay  = document.getElementById('privacy-overlay');
+  const body     = document.getElementById('privacy-body');
+  const check    = document.getElementById('privacy-check');
+  const hint     = document.getElementById('privacy-hint');
+  const closeBtn = document.getElementById('privacy-close');
+  const openLink = document.getElementById('open-privacy');
 
   function openModal() {
     overlay.classList.add('open');
@@ -171,9 +170,7 @@ form.addEventListener('submit', async e => {
   }
 
   openLink.addEventListener('click', e => { e.preventDefault(); openModal(); });
-
   closeBtn.addEventListener('click', closeModal);
-
   overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
 
   body.addEventListener('scroll', () => {
@@ -185,7 +182,11 @@ form.addEventListener('submit', async e => {
 
   check.addEventListener('change', () => {
     if (check.checked) {
-      agreeMain.checked = true;
+      privacyAgreed = true;
+      document.getElementById('agree-pending').style.display = 'none';
+      const agreeDone = document.getElementById('agree-done');
+      agreeDone.style.display = 'flex';
+      btnSubmit.disabled = false;
       setError('agree', 'err-agree', false);
       setTimeout(closeModal, 300);
     }
@@ -197,4 +198,3 @@ document.getElementById('name').addEventListener('input',    function() { setErr
 document.getElementById('email').addEventListener('input',   function() { if (this.value.trim()) setError('email', 'err-email', !emailRe.test(this.value.trim())); });
 document.getElementById('job').addEventListener('change',    function() { setError('job',     'err-job',     this.value === ''); });
 document.getElementById('message').addEventListener('input', function() { setError('message', 'err-message', this.value.trim() === ''); });
-document.getElementById('agree').addEventListener('change',  function() { setError('agree',   'err-agree',   !this.checked); });
