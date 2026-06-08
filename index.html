@@ -1818,8 +1818,10 @@
               <p class="error-msg" id="err-agree">個人情報の取り扱いへの同意が必要です。</p>
             </div>
 
-            <!-- ハニーポット：人間には見えない、ボット対策 -->
-            <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+            <!-- ハニーポット：ボット対策（画面外に配置） -->
+            <div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+              <input type="text" name="website" tabindex="-1" autocomplete="off">
+            </div>
             <button type="submit" class="btn-submit">送信する</button>
           </form>
 
